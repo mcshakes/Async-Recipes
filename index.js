@@ -1,3 +1,5 @@
+const appKey = edamam.APP_KEY
+const appId = edamam.APP_ID
 
 function submitSearch() {
   $(".js-search-form").submit(event => {
@@ -7,34 +9,28 @@ function submitSearch() {
     const query = target.val();
 
     target.val("")
-    getData(query, displayYouTubeData);
+    getData(query, displayRecipes);
   });
 }
 
 function getData(query, callback) {
-
-const url =
-
+  const url = `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}&from=0&to=8`
   $.getJSON(url, query, callback);
 }
 
-function displayYouTubeData(data) {
-  const results = data.items.map((item, index) => renderResults(item));
+function displayRecipes(data) {
+  console.log(data.hits)
+  const results = data.hits.map((hit, index) => renderResults(hit));
   $(".search-results").html(results);
 }
 
 function renderResults(result) {
   return `
     <div>
-      <h3>${result.snippet.title}</h3>
-
+      <h2>${result.recipe.label}</h2>
       <figure>
-        <a target="_blank" href="https://www.youtube.com/watch?v=${result.id.videoId}">
-          <img class="thumbnail" src="${result.snippet.thumbnails.medium.url}" alt="">
-        </a>
+          <img class="thumbnail" src="${result.recipe.image}" alt="">
       </figure>
-
-      <${result.snippet.description}</p>
     </div>
   `;
 }
