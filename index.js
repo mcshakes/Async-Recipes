@@ -20,17 +20,28 @@ function getData(query, callback) {
 
 function displayRecipes(data) {
   console.log(data.hits)
-  const results = data.hits.map((hit, index) => renderResults(hit));
+  const results = data.hits.map((hit, index) => renderResults(hit, index));
   $(".search-results").html(results);
 }
 
-function renderResults(result) {
+function renderResults(result, index) {
+
+  // let ingArr = result.recipe.ingredientLines
+  //
+  // for(let i = 0; i < ingArr.length; i++) {
+  //
+  // }
+
   return `
-    <div>
+    <div class="recipe-${index + 1}">
       <h2>${result.recipe.label}</h2>
       <figure>
           <img class="thumbnail" src="${result.recipe.image}" alt="">
       </figure>
+
+      <ul>
+
+      </ul>
     </div>
   `;
 }
