@@ -19,18 +19,18 @@ function getData(query, callback) {
 }
 
 function displayRecipes(data) {
-  console.log(data.hits)
   const results = data.hits.map((hit, index) => renderResults(hit, index));
   $(".search-results").html(results);
 }
 
 function renderResults(result, index) {
 
-  // let ingArr = result.recipe.ingredientLines
-  //
-  // for(let i = 0; i < ingArr.length; i++) {
-  //
-  // }
+  let ingArr = result.recipe.ingredientLines
+  let list = ""
+
+  for(let i = 0; i < ingArr.length; i++) {
+    list += `<li>${ingArr[i]}</li>`
+  }
 
   return `
     <div class="recipe-${index + 1}">
@@ -38,13 +38,14 @@ function renderResults(result, index) {
       <figure>
           <img class="thumbnail" src="${result.recipe.image}" alt="">
       </figure>
-
       <ul>
-
+        ${list}
       </ul>
     </div>
   `;
 }
+
+// function sortIngredients()
 
 $(document).ready(function() {
   submitSearch();
