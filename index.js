@@ -36,7 +36,9 @@ function renderResults(result, index) {
     <div class="recipe-${index + 1}">
       <h2>${result.recipe.label}</h2>
       <figure>
+        <a target="_blank" href="${result.recipe.url}">
           <img class="thumbnail" src="${result.recipe.image}" alt="">
+        </a>
       </figure>
       <ul>
         ${list}
@@ -44,8 +46,6 @@ function renderResults(result, index) {
     </div>
   `;
 }
-
-// function sortIngredients()
 
 $(document).ready(function() {
   submitSearch();
