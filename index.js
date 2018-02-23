@@ -3,11 +3,20 @@ const appId = edamam.APP_ID
 const baseURL = `https://api.edamam.com/search?q=`
 
 function buildURL() {
-  // takes the baseURL as an intro
-  // Presents a form to user, they pick which ones they want
+  let ending = ""
+  // $(".submit-build").click(function() {
+    let vegan = $("#vegan");
 
-  // Adds something like &health=vegan to the end
+    if (vegan.is(":checked")) {
+      ending += "&health=vegan"
+    }
+  // })
+  return ending
+}
 
+function renderContent() {
+  $(".user-diet-preference").hide();
+  $(".content-body").fadeIn(1000);
 }
 
 function submitSearch() {
@@ -23,7 +32,7 @@ function submitSearch() {
 }
 
 function getData(query, callback) {
-  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=8`
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=10` + buildURL
   $.getJSON(url, query, callback);
 }
 
@@ -60,6 +69,10 @@ function renderResults(result, index) {
 }
 
 $(document).ready(function() {
-  
+  $(".submit-build").on("click", function() {
+    buildURL();
+    renderContent();
+  });
+
   submitSearch();
 })
