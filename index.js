@@ -4,14 +4,21 @@ const baseURL = `https://api.edamam.com/search?q=`
 
 function buildURL() {
   let ending = ""
-  // $(".submit-build").click(function() {
   let vegan = $("#vegan");
+  let peanutFree = $("#peanut-free");
+  let none = $("#none");
 
   if (vegan.is(":checked")) {
-    ending = "&health=vegan"
+    ending += "&health=vegan"
   }
-  // })
+  else if (peanutFree.is(":checked")) {
+    ending += "&health=peanut-free"
+  }
+  else {
+    ending += ""
+  }
   return ending
+
 }
 
 function renderContent() {
