@@ -1,5 +1,14 @@
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
+const baseURL = `https://api.edamam.com/search?q=`
+
+function buildURL() {
+  // takes the baseURL as an intro
+  // Presents a form to user, they pick which ones they want
+
+  // Adds something like &health=vegan to the end
+
+}
 
 function submitSearch() {
   $(".js-search-form").submit(event => {
@@ -14,7 +23,7 @@ function submitSearch() {
 }
 
 function getData(query, callback) {
-  const url = `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}&from=0&to=8`
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=8`
   $.getJSON(url, query, callback);
 }
 
@@ -51,5 +60,6 @@ function renderResults(result, index) {
 }
 
 $(document).ready(function() {
+  
   submitSearch();
 })
