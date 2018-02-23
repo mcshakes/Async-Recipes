@@ -20,7 +20,10 @@ function getData(query, callback) {
 
 function displayRecipes(data) {
   const results = data.hits.map((hit, index) => renderResults(hit, index));
+
+  const count = data.count
   $(".search-results").html(results);
+  $("#number-of-recipes").html(count);
 }
 
 function renderResults(result, index) {
