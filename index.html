@@ -8,23 +8,59 @@
   </head>
 
   <body>
-    <main aria-live="polite">
-      <header class="form-header">
-        <h1>Search Recipes</h1>
+    <section class="user-diet-preference">
+      <header>
+        <h1>Dietary Submission</h1>
+        <p>
+          Before showing the recipes, do you have any dietary restrictions? Fill out this form
+        </p>
       </header>
 
+      <form action="#" class="dietary-url-builder">
+        <label for="vegan">
+          <input type="checkbox" id="vegan" name="vegan">
+          <span>Vegan</span>
+        </label>
 
-      <form action="#" class="js-search-form">
-        <input name="searchtxt" type="text" class="js-query" aria-label="Search">
-        <button name="searchbtn" type="submit" value="Search" aria-label="Search">Search</button>
+        <label for="peanut-free">
+          <input type="checkbox" id="peanut-free" name="peanut-free">
+          <span>Peanut Free</span>
+        </label>
+
+        <label for="none">
+          <input type="checkbox" id="none" name="none">
+          <span>No Restrictions</span>
+        </label>
+
+        <div class="form-row">
+          <button class="submit-build">Submit</button>
+        </div>
       </form>
+    </section>
 
-      <h2>Your Results</h2>
-      <section class="search-results">
-      
-      </section>
+    <div class="content-body hide">
+      <main aria-live="polite" role="main">
+        <header class="form-header">
+          <h1>Search Recipes</h1>
+        </header>
 
-    </main>
+        <form action="#" class="js-search-form">
+          <input name="searchtxt" type="text" class="js-query" aria-label="Search">
+          <button name="searchbtn" type="submit" value="Search" aria-label="Search">Search</button>
+        </form>
+
+        <h2>Your Results</h2>
+        <section class="results-info">
+          <h3>We found a total of <span id="number-of-recipes"></span> Recipes</h3>
+        </section>
+
+        <section class="search-results">
+
+        </section>
+
+      </main>
+    </div>
+
     <script
           src="https://code.jquery.com/jquery-3.2.1.min.js"
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

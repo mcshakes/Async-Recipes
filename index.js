@@ -1,5 +1,23 @@
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
+const baseURL = `https://api.edamam.com/search?q=`
+
+function buildURL() {
+  let ending = ""
+  // $(".submit-build").click(function() {
+  let vegan = $("#vegan");
+
+  if (vegan.is(":checked")) {
+    ending = "&health=vegan"
+  }
+  // })
+  return ending
+}
+
+function renderContent() {
+  $(".user-diet-preference").hide();
+  $(".content-body").fadeIn(1000);
+}
 
 function submitSearch() {
   $(".js-search-form").submit(event => {
@@ -14,13 +32,16 @@ function submitSearch() {
 }
 
 function getData(query, callback) {
-  const url = `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}&from=0&to=8`
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=10` + buildURL()
   $.getJSON(url, query, callback);
 }
 
 function displayRecipes(data) {
   const results = data.hits.map((hit, index) => renderResults(hit, index));
+
+  const count = data.count
   $(".search-results").html(results);
+  $("#number-of-recipes").html(count);
 }
 
 function renderResults(result, index) {
@@ -48,5 +69,10 @@ function renderResults(result, index) {
 }
 
 $(document).ready(function() {
+  $(".submit-build").on("click", function() {
+    renderContent();
+    buildURL();
+  });
+
   submitSearch();
 })
