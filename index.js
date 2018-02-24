@@ -23,7 +23,8 @@ function buildURL() {
 
 function renderContent() {
   $(".user-diet-preference").hide();
-  $(".content-body").fadeIn(1000);
+  $(".content-body").removeClass("hide")
+  // fadeIn(1000);
 }
 
 function submitSearch() {
@@ -38,12 +39,21 @@ function submitSearch() {
   });
 }
 
+function errorHandling() {
+  // put in .fail
+}
+
 function getData(query, callback) {
-  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=10` + buildURL()
-  $.getJSON(url, query, callback);
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=10` + buildURL();
+  $.getJSON(url, query, callback)
+  .fail(function() {
+    alert('getJSON request failed! ');
+
+  });
 }
 
 function displayRecipes(data) {
+  console.log(data)
   const results = data.hits.map((hit, index) => renderResults(hit, index));
 
   const count = data.count
@@ -76,7 +86,8 @@ function renderResults(result, index) {
 }
 
 $(document).ready(function() {
-  $(".submit-build").on("click", function() {
+  $(".submit-build").on("click", function(e) {
+    e.preventDefault()
     renderContent();
     buildURL();
   });
