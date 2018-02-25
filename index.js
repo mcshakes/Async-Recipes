@@ -50,16 +50,27 @@ function getData(query, callback) {
   $.getJSON(url, query, callback)
   .fail(function() {
     alert('getJSON request failed! ');
-
   });
 }
 
-function getNutrients() {
+function getNutrients(ing_arr) {
+  let ingredients = ing_arr.join();
+
   $.ajax({
     headers: {
       "x-app-id": nutr_id,
       "x-app-key": nutr_key
     },
+    dataType: "json",
+    data: ingredients,
+    method: 'POST',
+    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+    success: function(data) {
+      console.log(data)
+    },
+    error: function() {
+      console.log("Error grabbing calories and nutrient info");
+    }
   });
 }
 
@@ -92,8 +103,13 @@ function renderResults(result, index) {
       <ul>
         ${list}
       </ul>
+
+      <button class="nutrients-${index + 1}">See Nutrients</button>
     </div>
   `;
+
+  // on click of button get nutrients here, pass in getNutrients
+  $
 }
 
 $(document).ready(function() {
