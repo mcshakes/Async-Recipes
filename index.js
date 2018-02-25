@@ -1,5 +1,7 @@
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
+const nutr_id = nutritionix.APP_ID
+const nutr_key = nutritionix.APP_KEY
 const baseURL = `https://api.edamam.com/search?q=`
 
 function buildURL() {
@@ -49,6 +51,15 @@ function getData(query, callback) {
   .fail(function() {
     alert('getJSON request failed! ');
 
+  });
+}
+
+function getNutrients() {
+  $.ajax({
+    headers: {
+      "x-app-id": nutr_id,
+      "x-app-key": nutr_key
+    },
   });
 }
 
