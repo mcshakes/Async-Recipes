@@ -9,58 +9,71 @@
   </head>
 
   <body>
-    <section class="user-diet-preference">
-      <header>
-        <h1>Dietary Submission</h1>
-        <p>
-          Before showing the recipes, do you have any dietary restrictions? Fill out this form
-        </p>
-      </header>
-
-      <form action="#" class="dietary-url-builder">
-        <label for="vegan">
-          <input type="checkbox" id="vegan" name="vegan">
-          <span>Vegan</span>
-        </label>
-
-        <label for="peanut-free">
-          <input type="checkbox" id="peanut-free" name="peanut-free">
-          <span>Peanut Free</span>
-        </label>
-
-        <label for="none">
-          <input type="checkbox" id="none" name="none">
-          <span>No Restrictions</span>
-        </label>
-
-        <div class="form-row">
-          <button class="submit-build">Submit</button>
-        </div>
-      </form>
-    </section>
-
-    <div class="content-body hide">
-      <main aria-live="polite" role="main">
-        <header class="form-header">
-          <h1>Search Recipes</h1>
+    <div class="container">
+      <section class="user-diet-preference">
+        <header>
+          <h1>Dietary Concerns?
+          </h1>
+          <p>
+            Before showing the recipes, do you have any dietary restrictions? Fill out this form
+          </p>
         </header>
 
-        <form action="#" class="js-search-form">
-          <input name="searchtxt" type="text" class="js-query" aria-label="Search">
-          <button name="searchbtn" type="submit" value="Search" aria-label="Search">Search</button>
+        <form action="#" class="dietary-url-builder">
+            <div class="form-check">
+              <label for="vegan">
+                <input type="checkbox" id="vegan" name="vegan">
+                <span>Vegan</span>
+              </label>
+            </div>
+
+            <div class="form-check">
+              <label for="peanut-free">
+                <input type="checkbox" id="peanut-free" name="peanut-free" value="">
+                <span>Peanut Free</span>
+              </label>
+            </div>
+
+            <div class="form-check">
+              <label for="none">
+                <input type="checkbox" id="none" name="none">
+                <span>No Restrictions</span>
+              </label>
+            </div>
+
+          <div class="form-check">
+            <div class="col">
+              <button class="submit-build">Submit</button>
+            </div>
+          <div>
         </form>
+      </section>
 
-        <h2>Your Results</h2>
-        <section class="results-info">
-          <h3>We found a total of <span id="number-of-recipes"></span> Recipes</h3>
-        </section>
+      <div class="content-body hide">
+        <main aria-live="polite" role="main">
+          <header class="form-header">
+            <h1>Search Recipes</h1>
+          </header>
 
-        <section class="search-results">
+          <form action="#" class="js-search-form">
+            <input name="searchtxt" type="text" class="js-query" aria-label="Search">
+            <button name="searchbtn" type="submit" value="Search" aria-label="Search">Search</button>
+          </form>
 
-        </section>
+          <h2>Your Results</h2>
+          <section class="results-info">
+            <h3>We found a total of <span id="number-of-recipes"></span> Recipes</h3>
+          </section>
 
-      </main>
+          <section class="search-results">
+
+          </section>
+
+        </main>
+      </div>
+
     </div>
+
 
     <script
           src="https://code.jquery.com/jquery-3.2.1.min.js"
