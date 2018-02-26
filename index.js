@@ -1,5 +1,7 @@
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
+const nutr_id = nutritionix.APP_ID
+const nutr_key = nutritionix.APP_KEY
 const baseURL = `https://api.edamam.com/search?q=`
 
 function buildURL() {
@@ -48,12 +50,32 @@ function getData(query, callback) {
   $.getJSON(url, query, callback)
   .fail(function() {
     alert('getJSON request failed! ');
+  });
+}
 
+function getNutrients(ing_arr) {
+  let ingredients = ing_arr.join();
+
+  $.ajax({
+    headers: {
+      "x-app-id": nutr_id,
+      "x-app-key": nutr_key
+    },
+    dataType: "json",
+    data: ingredients,
+    method: 'POST',
+    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+    success: function(data) {
+      console.log("HEEY Was CLicked")
+    },
+    error: function() {
+      console.log("Error grabbing calories and nutrient info");
+    }
   });
 }
 
 function displayRecipes(data) {
-  console.log(data)
+  // console.log(data)
   const results = data.hits.map((hit, index) => renderResults(hit, index));
 
   const count = data.count
@@ -70,8 +92,13 @@ function renderResults(result, index) {
     list += `<li>${ingArr[i]}</li>`
   }
 
+  $(`recipe-${index + 1}`).on("click", ".nutrient-data", function(ingArr) {
+    console.log("HEy within button click")
+    // getNutrients(ingArr)
+  })
+
   return `
-    <div class="recipe-${index + 1}">
+    <div class="">
       <h2>${result.recipe.label}</h2>
       <figure>
         <a target="_blank" href="${result.recipe.url}">
@@ -81,9 +108,14 @@ function renderResults(result, index) {
       <ul>
         ${list}
       </ul>
+
+      <button class="nutrient-data">See Nutrients</button>
     </div>
   `;
 }
+
+
+
 
 $(document).ready(function() {
   $(".submit-build").on("click", function(e) {
