@@ -6,6 +6,13 @@
   display: none;
 }
 
+.user-diet-preference {
+  border: 3px dotted black
+}
+
+.dietary-url-builder {
+  border: 3px dotted grey
+}
 
 @media (min-width: 576px) { ... }
 
