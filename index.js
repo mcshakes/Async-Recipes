@@ -66,7 +66,7 @@ function getNutrients(ing_arr) {
     method: 'POST',
     url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
     success: function(data) {
-      console.log(data)
+      console.log("HEEY Was CLicked")
     },
     error: function() {
       console.log("Error grabbing calories and nutrient info");
@@ -75,7 +75,7 @@ function getNutrients(ing_arr) {
 }
 
 function displayRecipes(data) {
-  console.log(data)
+  // console.log(data)
   const results = data.hits.map((hit, index) => renderResults(hit, index));
 
   const count = data.count
@@ -92,8 +92,13 @@ function renderResults(result, index) {
     list += `<li>${ingArr[i]}</li>`
   }
 
+  $(`recipe-${index + 1}`).on("click", ".nutrient-data", function(ingArr) {
+    console.log("HEy within button click")
+    // getNutrients(ingArr)
+  })
+
   return `
-    <div class="recipe-${index + 1}">
+    <div class="">
       <h2>${result.recipe.label}</h2>
       <figure>
         <a target="_blank" href="${result.recipe.url}">
@@ -104,13 +109,13 @@ function renderResults(result, index) {
         ${list}
       </ul>
 
-      <button class="nutrients-${index + 1}">See Nutrients</button>
+      <button class="nutrient-data">See Nutrients</button>
     </div>
   `;
-
-  // on click of button get nutrients here, pass in getNutrients
-  $
 }
+
+
+
 
 $(document).ready(function() {
   $(".submit-build").on("click", function(e) {
