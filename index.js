@@ -4,6 +4,14 @@ const nutr_id = nutritionix.APP_ID
 const nutr_key = nutritionix.APP_KEY
 const baseURL = `https://api.edamam.com/search?q=`
 
+function toggleDietaryAlert() {
+  $(".alert").toggleClass('in out');
+  let form = $(".dietary-url-builder")
+
+  form.addClass('was-validated')
+  // return false;
+}
+
 function buildURL() {
   let ending = ""
   let vegan = $("#vegan");
@@ -16,17 +24,18 @@ function buildURL() {
   else if (peanutFree.is(":checked")) {
     ending += "&health=peanut-free"
   }
-  else {
+  else if (none.is(":checked")) {
     ending += ""
   }
+  else {
+    noDietaryAlert();
+  }
   return ending
-
 }
 
 function renderContent() {
   $(".user-diet-preference").hide();
   $(".content-body").removeClass("hide")
-  // fadeIn(1000);
 }
 
 function submitSearch() {
@@ -79,8 +88,8 @@ function displayRecipes(data) {
   const results = data.hits.map((hit, index) => renderResults(hit, index));
 
   const count = data.count
-  $(".search-results").html(results);
   $("#number-of-recipes").html(count);
+  $(".search-results").html(results);
 }
 
 function renderResults(result, index) {
@@ -93,7 +102,7 @@ function renderResults(result, index) {
   }
 
   $(`recipe-${index + 1}`).on("click", ".nutrient-data", function(ingArr) {
-    console.log("HEy within button click")
+    console.log("Hey within button click")
     // getNutrients(ingArr)
   })
 
@@ -114,15 +123,22 @@ function renderResults(result, index) {
   `;
 }
 
-
-
-
-$(document).ready(function() {
+function getStarted() {
   $(".submit-build").on("click", function(e) {
     e.preventDefault()
-    renderContent();
-    buildURL();
-  });
+    checkedBoxes = $("input[type='checkbox']:checked")
 
+    if (checkedBoxes.length === 0) {
+      toggleDietaryAlert();
+      // $('#bsalert').on('close.bs.alert', toggleDietaryAlert)
+    } else {
+      renderContent();
+      buildURL();
+    }
+  });
+}
+
+$(document).ready(function() {
+  getStarted();
   submitSearch();
 })
