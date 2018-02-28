@@ -10,44 +10,53 @@
 
   <body>
     <div class="container">
-      <section class="user-diet-preference">
+      <section class="user-diet-preference card-body">
         <header>
-          <h1>Dietary Concerns?
-          </h1>
-          <p>
-            Before showing the recipes, do you have any dietary restrictions? Fill out this form
+          <h1>Dietary Form</h1>
+
+          <p class="h4 text-center py-4">
+            Do you have any dietary restrictions? Fill out this form
           </p>
         </header>
 
-        <form action="#" class="dietary-url-builder">
+        <form action="#" class="dietary-url-builder" novalidate>
             <div class="form-check">
               <label for="vegan">
-                <input type="checkbox" id="vegan" name="vegan">
+                <input class="form-check-input" type="checkbox" id="vegan" name="vegan" required>
                 <span>Vegan</span>
               </label>
             </div>
 
             <div class="form-check">
               <label for="peanut-free">
-                <input type="checkbox" id="peanut-free" name="peanut-free" value="">
+                <input class="form-check-input" type="checkbox" id="peanut-free" name="peanut-free" value="" required>
                 <span>Peanut Free</span>
               </label>
             </div>
 
             <div class="form-check">
-              <label for="none">
-                <input type="checkbox" id="none" name="none">
-                <span>No Restrictions</span>
+              <label class="form-check-label" for="none">
+                <input class="form-check-input is-valid" type="checkbox" id="none" name="none" required>
+                <span>No Restrictions. Let's see the food</span>
               </label>
             </div>
 
+          <div class="invalid-feedback">Choose at least one from above</div>
+
           <div class="form-check">
-            <div class="col">
-              <button class="submit-build">Submit</button>
+            <div class="text-center py-4 mt-3">
+              <button class="btn btn-cyan submit-build" type="submit">Submit</button>
             </div>
           <div>
         </form>
       </section>
+
+
+
+        <div class="alert alert-warning fade out" id="bsalert" role="alert">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Whoops!</strong> We need to know what you can and cannot eat.
+        </div>
 
       <div class="content-body hide">
         <main aria-live="polite" role="main">
@@ -60,12 +69,11 @@
             <button name="searchbtn" type="submit" value="Search" aria-label="Search">Search</button>
           </form>
 
-          <h2>Your Results</h2>
-          <section class="results-info">
-            <h3>We found a total of <span id="number-of-recipes"></span> Recipes</h3>
-          </section>
-
           <section class="search-results">
+            <h2>Your Results</h2>
+            <section class="results-info">
+            <h3>We found a total of <span id="number-of-recipes"></span> Recipes</h3>
+            </section>
 
           </section>
 
