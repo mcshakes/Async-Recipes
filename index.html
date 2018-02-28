@@ -3,19 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Async Recipes</title>
+    <title>What's in My Fridge</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   </head>
 
   <body>
     <div class="container">
+      <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Just My Fridge</span>
+      </nav>
       <section class="user-diet-preference card-body">
         <header>
-          <h1>Dietary Form</h1>
-
           <p class="h4 text-center py-4">
-            Do you have any dietary restrictions? Fill out this form
+            Any dietary restrictions? Fill out this form
           </p>
         </header>
 
@@ -61,12 +63,14 @@
       <div class="content-body hide">
         <main aria-live="polite" role="main">
           <header class="form-header">
-            <h1>Search Recipes</h1>
+            <h1>Find Recipes</h1>
           </header>
 
-          <form action="#" class="js-search-form">
-            <input name="searchtxt" type="text" class="js-query" aria-label="Search">
-            <button name="searchbtn" type="submit" value="Search" aria-label="Search">Search</button>
+          <form action="#" class="js-search-form" role="search">
+            <input name="searchtxt" type="text" class="js-query" aria-label="Search" placeholder="turmeric,radishes, beef">
+            <div>
+              <button class="btn btn-default" name="searchbtn" type="submit" value="Search" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
           </form>
 
           <section class="search-results">
