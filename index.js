@@ -1,3 +1,4 @@
+
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
 const nutr_id = nutritionix.APP_ID
@@ -36,6 +37,7 @@ function buildURL() {
 function renderContent() {
   $(".user-diet-preference").hide();
   $(".content-body").removeClass("hide")
+  addBackButton()
 }
 
 function submitSearch() {
@@ -107,29 +109,28 @@ function renderResults(result, index) {
   })
 
   return `
-  <div class="recipe-card-${index + 1}">
+    <div class="recipe-card-${index + 1}">
 
-    <div class="view overlay>
-      <figure>
-        <a target="_blank" href="${result.recipe.url}">
-        <img src="${result.recipe.image}" class="img-fluid rounded" alt="">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </figure>
+        <figure>
+          <a target="_blank" href="${result.recipe.url}">
+            <img src="${result.recipe.image}" class="img-fluid rounded mx-auto d-block" alt="">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </figure>
+
+
+      <div class="card-body">
+        <h3 class="card-title">${result.recipe.label}</h3>
+        </hr>
+
+        <ul class="card-text">
+          ${list}
+        </ul>
+
+        <button class="nutrient-data btn btn-primary">See Nutrients</button>
+      </div>
+
     </div>
-
-    <div class="card-body">
-      <h3 class="card-title">${result.recipe.label}</h3>
-      </hr>
-
-      <ul class="card-text">
-        ${list}
-      </ul>
-
-      <button class="nutrient-data btn btn-primary">See Nutrients</button>
-    </div>
-
-  </div> 
   `;
 }
 
@@ -144,11 +145,27 @@ function getStarted() {
     } else {
       renderContent();
       buildURL();
+      // $(".return-form").bind("click", returnToDietForm())
     }
   });
+}
+
+function addBackButton() {
+  $(".navbar").append(`<button class="return-form btn btn-primary">Back</button>`)
+}
+
+function clickBackToForm() {
+  $(".return-form").on("click", returnToDietForm())
+}
+
+function returnToDietForm(e) {
+  console.log("HEY");
+  // location.reload();
 }
 
 $(document).ready(function() {
   getStarted();
   submitSearch();
+  clickBackToForm();
+
 })
