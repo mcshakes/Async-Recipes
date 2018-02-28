@@ -57,7 +57,7 @@ function errorHandling() {
 }
 
 function getData(query, callback) {
-  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=10` + buildURL();
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=50` + buildURL();
   $.getJSON(url, query, callback)
   .fail(function() {
     alert('getJSON request failed! ');
