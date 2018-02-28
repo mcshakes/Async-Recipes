@@ -107,19 +107,29 @@ function renderResults(result, index) {
   })
 
   return `
-    <div class="">
-      <h2>${result.recipe.label}</h2>
+  <div class="recipe-card-${index + 1}">
+
+    <div class="view overlay>
       <figure>
         <a target="_blank" href="${result.recipe.url}">
-          <img class="thumbnail" src="${result.recipe.image}" alt="">
+        <img src="${result.recipe.image}" class="img-fluid rounded" alt="">
+          <div class="mask rgba-white-slight"></div>
         </a>
       </figure>
-      <ul>
+    </div>
+
+    <div class="card-body">
+      <h3 class="card-title">${result.recipe.label}</h3>
+      </hr>
+
+      <ul class="card-text">
         ${list}
       </ul>
 
-      <button class="nutrient-data">See Nutrients</button>
+      <button class="nutrient-data btn btn-primary">See Nutrients</button>
     </div>
+
+  </div> 
   `;
 }
 
