@@ -1,8 +1,17 @@
+
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
 const nutr_id = nutritionix.APP_ID
 const nutr_key = nutritionix.APP_KEY
 const baseURL = `https://api.edamam.com/search?q=`
+
+function toggleDietaryAlert() {
+  $(".alert").toggleClass('in out');
+  let form = $(".dietary-url-builder")
+
+  form.addClass('was-validated')
+  // return false;
+}
 
 function buildURL() {
   let ending = ""
@@ -16,17 +25,19 @@ function buildURL() {
   else if (peanutFree.is(":checked")) {
     ending += "&health=peanut-free"
   }
-  else {
+  else if (none.is(":checked")) {
     ending += ""
   }
+  else {
+    noDietaryAlert();
+  }
   return ending
-
 }
 
 function renderContent() {
   $(".user-diet-preference").hide();
   $(".content-body").removeClass("hide")
-  // fadeIn(1000);
+  addBackButton()
 }
 
 function submitSearch() {
@@ -79,8 +90,8 @@ function displayRecipes(data) {
   const results = data.hits.map((hit, index) => renderResults(hit, index));
 
   const count = data.count
-  $(".search-results").html(results);
   $("#number-of-recipes").html(count);
+  $(".search-results").html(results);
 }
 
 function renderResults(result, index) {
@@ -93,36 +104,68 @@ function renderResults(result, index) {
   }
 
   $(`recipe-${index + 1}`).on("click", ".nutrient-data", function(ingArr) {
-    console.log("HEy within button click")
+    console.log("Hey within button click")
     // getNutrients(ingArr)
   })
 
   return `
-    <div class="">
-      <h2>${result.recipe.label}</h2>
-      <figure>
-        <a target="_blank" href="${result.recipe.url}">
-          <img class="thumbnail" src="${result.recipe.image}" alt="">
-        </a>
-      </figure>
-      <ul>
-        ${list}
-      </ul>
+    <div class="recipe-card-${index + 1}">
 
-      <button class="nutrient-data">See Nutrients</button>
+        <figure>
+          <a target="_blank" href="${result.recipe.url}">
+            <img src="${result.recipe.image}" class="img-fluid rounded mx-auto d-block" alt="">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </figure>
+
+
+      <div class="card-body">
+        <h3 class="card-title">${result.recipe.label}</h3>
+        </hr>
+
+        <ul class="card-text">
+          ${list}
+        </ul>
+
+        <button class="nutrient-data btn btn-primary">See Nutrients</button>
+      </div>
+
     </div>
   `;
 }
 
-
-
-
-$(document).ready(function() {
+function getStarted() {
   $(".submit-build").on("click", function(e) {
     e.preventDefault()
-    renderContent();
-    buildURL();
-  });
+    checkedBoxes = $("input[type='checkbox']:checked")
 
+    if (checkedBoxes.length === 0) {
+      toggleDietaryAlert();
+      // $('#bsalert').on('close.bs.alert', toggleDietaryAlert)
+    } else {
+      renderContent();
+      buildURL();
+      // $(".return-form").bind("click", returnToDietForm())
+    }
+  });
+}
+
+function addBackButton() {
+  $(".navbar").append(`<button class="return-form btn btn-primary">Back</button>`)
+}
+
+function clickBackToForm() {
+  $(".return-form").on("click", returnToDietForm())
+}
+
+function returnToDietForm(e) {
+  console.log("HEY");
+  // location.reload();
+}
+
+$(document).ready(function() {
+  getStarted();
   submitSearch();
+  clickBackToForm();
+
 })

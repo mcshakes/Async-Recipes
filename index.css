@@ -5,3 +5,26 @@
 .hide {
   display: none;
 }
+
+.user-diet-preference {
+  border: 3px dotted black;
+}
+
+.submit-build {
+  background-color: cyan;
+}
+
+.dietary-url-builder {
+  border: 3px dotted grey
+}
+
+@media (min-width: 576px) { ... }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { ... }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { ... }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { ... }
