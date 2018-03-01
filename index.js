@@ -3,7 +3,11 @@ const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
 const nutr_id = nutritionix.APP_ID
 const nutr_key = nutritionix.APP_KEY
+const yummID = yummly.APP_ID
+const yummKey = yummly.APP_KEY
+
 const baseURL = `https://api.edamam.com/search?q=`
+const yummURL = "https://api.yummly.com/v1/api/recipes?"
 
 function toggleDietaryAlert() {
   $(".alert").toggleClass('in out');
@@ -13,7 +17,17 @@ function toggleDietaryAlert() {
   // return false;
 }
 
-function buildURL() {
+function buildYummlyURL() {
+  let ending = ""
+  let pesc = $("#pescatarian");
+
+  if (pesc.is(":checked")) {
+    ending += "&allowedDiet[]=Pescetarian"
+  }
+  return ending
+}
+
+function buildEdamamURL() {
   let ending = ""
   let vegan = $("#vegan");
   let peanutFree = $("#peanut-free");
@@ -58,7 +72,7 @@ function errorHandling() {
 
 function getData(query, callback) {
   // from=0&to=50
-  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=10` + buildURL();
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=10` + buildEdamamURL();
   $.getJSON(url, query, callback)
   .fail(function() {
     alert('getJSON request failed! ');
@@ -104,13 +118,8 @@ function renderResults(result, index) {
     list += `<li>${ingArr[i]}</li>`
   }
 
-  $(`recipe-${index + 1}`).on("click", ".nutrient-data", function(ingArr) {
-    console.log("Hey within button click")
-    // getNutrients(ingArr)
-  })
-
   return `
-    <div class="recipe-card-${index + 1}">
+    <div class="recipe-card rounded">
 
         <figure>
           <a target="_blank" href="${result.recipe.url}">
@@ -145,10 +154,18 @@ function getStarted() {
       // $('#bsalert').on('close.bs.alert', toggleDietaryAlert)
     } else {
       renderContent();
-      buildURL();
+      buildEdamamURL();
+      ingredientListener()
       // $(".return-form").bind("click", returnToDietForm())
     }
   });
+}
+
+function ingredientListener() {
+  $(".recipe-card").on("click", "button.nutrient-data", function(ingArr) {
+    console.log("Hey within button click")
+    // getNutrients(ingArr)
+  })
 }
 
 function addBackButton() {
@@ -160,7 +177,7 @@ function clickBackToForm() {
 }
 
 function returnToDietForm(e) {
-  console.log("HEY");
+  console.log("Hello from DietForm");
   // location.reload();
 }
 
