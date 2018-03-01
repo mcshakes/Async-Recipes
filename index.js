@@ -1,3 +1,19 @@
+const edamam = {
+  APP_ID: "9a26f267",
+  APP_KEY: "b4d853901fd1ccfa48001109dc5ed079"
+}
+
+const nutritionix = {
+  APP_ID: "78806803",
+  APP_KEY: "aecf2ed7d06fa649eba66d3489e5691e"
+}
+
+const yummly = {
+  APP_ID: "12fd875a",
+  APP_KEY: "ba86c65e5fe1ef9412734dc7ae9d4bc3"
+}
+
+
 
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
@@ -101,8 +117,14 @@ function getNutrients(ing_arr) {
 }
 
 function displayRecipes(data) {
-  // console.log(data)
-  const results = data.hits.map((hit, index) => renderResults(hit, index));
+  // const results = data.hits.map((hit, index) => renderResults(hit, index));
+
+  const results = data.hits.map((hit, index) => {
+    const recipeCard = $(renderResults(hit,index));
+    ingredientListener(hit.recipe.ingredientLines, recipeCard);
+
+    return recipeCard;
+  });
 
   const count = data.count
   $("#number-of-recipes").html(count);
@@ -142,6 +164,7 @@ function renderResults(result, index) {
 
     </div>
   `;
+
 }
 
 function getStarted() {
@@ -155,17 +178,16 @@ function getStarted() {
     } else {
       renderContent();
       buildEdamamURL();
-      ingredientListener()
       // $(".return-form").bind("click", returnToDietForm())
     }
   });
 }
 
-function ingredientListener() {
-  $(".recipe-card").on("click", "button.nutrient-data", function(ingArr) {
-    console.log("Hey within button click")
-    // getNutrients(ingArr)
-  })
+function ingredientListener(ingArr, recipeCard) {
+   recipeCard.on("click", "button.nutrient-data", function() {
+    getNutrients(ingArr)
+
+   })
 }
 
 function addBackButton() {
@@ -185,4 +207,5 @@ $(document).ready(function() {
   getStarted();
   submitSearch();
   clickBackToForm();
+
 })
