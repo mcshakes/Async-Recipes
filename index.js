@@ -185,5 +185,4 @@ $(document).ready(function() {
   getStarted();
   submitSearch();
   clickBackToForm();
-
 })

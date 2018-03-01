@@ -6,6 +6,9 @@
   display: none;
 }
 
+.navbar {
+  background-color: #cabb48;
+}
 .user-diet-preference {
   border: 3px dotted black;
 }
