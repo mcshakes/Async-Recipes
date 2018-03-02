@@ -7,8 +7,9 @@ https://api.edamam.com/search?q=spagehtti&app_id=9a26f267&app_key=b4d853901fd1cc
 
 YUMMLY:
 
-https://api.yummly.com/v1/api/recipes?_app_id=12fd875a
 
+{{url}}_app_id={{APP_ID}}&_app_key={{APP_KEY}}&q=taco
+&allowedDiet[]=Pescetarian
 
 Turmeric color for Nav: #cabb48
 
@@ -17,4 +18,3 @@ Turmeric color for Nav: #cabb48
  // loop through, and cap per page based on maximum, maybe 5 per page instead.
  // navigation structure, each number is division of results Array
  // 1st loop for page, second loop processes results to put there
- 

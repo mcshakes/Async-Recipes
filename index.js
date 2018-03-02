@@ -66,6 +66,7 @@ function submitSearch() {
     const query = target.val();
 
     target.val("")
+
     getEdamamData(query, displayRecipes);
   });
 }
@@ -74,12 +75,21 @@ function errorHandling() {
   // put in .fail
 }
 
+function getYummlyData(query, callback) {
+  let url = `${yummlyURL}_app_id=${yummly.APP_ID}&_app_key=${yummly.APP_KEY}&q=${query}` + buildYummlyURL();
+
+  $.getJSON(url, query, callback)
+  .fail(function() {
+    alert('Yummly request failed! ');
+  });
+}
+
 function getEdamamData(query, callback) {
   // from=0&to=50
   const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=6` + buildEdamamURL();
   $.getJSON(url, query, callback)
   .fail(function() {
-    alert('getJSON request failed! ');
+    alert('Edamam request failed! ');
   });
 }
 
@@ -169,11 +179,18 @@ function getStarted() {
   $(".submit-build").on("click", function(e) {
     e.preventDefault()
     checkedBoxes = $("input[type='checkbox']:checked")
+    let pesc = $("#pescatarian");
 
     if (checkedBoxes.length === 0) {
       toggleDietaryAlert();
       // $('#bsalert').on('close.bs.alert', toggleDietaryAlert)
-    } else {
+    }
+
+    else if (pesc.is(":checked")) {
+      renderContent();
+      buildYummlyURL()
+    }
+    else {
       renderContent();
       buildEdamamURL();
     }
