@@ -51,8 +51,13 @@ function buildEdamamURL() {
 
 function renderContent() {
   $(".user-diet-preference").hide();
-  $(".content-body").removeClass("hide")
-  addBackButton()
+  $(".content-body").removeClass("hide");
+  addBackButton();
+
+  $("button.return-form").on("click" ,function() {
+    returnToDietForm()
+  });
+
 }
 
 function submitSearch() {
@@ -72,8 +77,14 @@ function errorHandling() {
 }
 
 function getEdamamData(query, callback) {
+  // get count first, capped at 50, 10 results a per_page
+
+  // loop through, and cap per page based on maximum, maybe 5 per page instead.
+  // navigation structure, each number is division of results Array
+  // 1st loop for page, second loop processes results to put there
+
   // from=0&to=50
-  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=10` + buildEdamamURL();
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=6` + buildEdamamURL();
   $.getJSON(url, query, callback)
   .fail(function() {
     alert('getJSON request failed! ');
@@ -113,7 +124,6 @@ function getNutrients(ing_arr) {
 }
 
 function displayRecipes(data) {
-  // const results = data.hits.map((hit, index) => renderResults(hit, index));
 
   const results = data.hits.map((hit, index) => {
     const recipeCard = $(renderResults(hit,index));
@@ -190,19 +200,12 @@ function addBackButton() {
 }
 
 function returnToDietForm() {
-  console.log("Hello from DietForm");
-  // location.reload();
+  location.reload();
 }
 
 $(document).ready(function() {
   getStarted();
   submitSearch();
 
-  $("button.return-form").click(function() {
-    $(this).data("clicked", true);
-  })
 
-  if ($("button.return-form").data("clicked")) {
-    returnToDietForm()
-  }
 })
