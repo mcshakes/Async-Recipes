@@ -1,19 +1,3 @@
-const edamam = {
-  APP_ID: "9a26f267",
-  APP_KEY: "b4d853901fd1ccfa48001109dc5ed079"
-}
-
-const nutritionix = {
-  APP_ID: "78806803",
-  APP_KEY: "aecf2ed7d06fa649eba66d3489e5691e"
-}
-
-const yummly = {
-  APP_ID: "12fd875a",
-  APP_KEY: "ba86c65e5fe1ef9412734dc7ae9d4bc3"
-}
-
-
 
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
@@ -59,7 +43,8 @@ function buildEdamamURL() {
     ending += ""
   }
   else {
-    noDietaryAlert();
+    // noDietaryAlert();
+    console.log("User did not pick a legitimate dietary option")
   }
   return ending
 }
@@ -78,7 +63,7 @@ function submitSearch() {
     const query = target.val();
 
     target.val("")
-    getData(query, displayRecipes);
+    getEdamamData(query, displayRecipes);
   });
 }
 
@@ -86,7 +71,7 @@ function errorHandling() {
   // put in .fail
 }
 
-function getData(query, callback) {
+function getEdamamData(query, callback) {
   // from=0&to=50
   const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=10` + buildEdamamURL();
   $.getJSON(url, query, callback)
@@ -99,19 +84,30 @@ function getNutrients(ing_arr) {
   let ingredients = ing_arr.join();
 
   $.ajax({
+    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
     headers: {
-      "x-app-id": nutr_id,
-      "x-app-key": nutr_key
+      "x-app-id": nutritionix.APP_ID,
+      "x-app-key": nutritionix.APP_KEY
     },
     dataType: "json",
-    data: ingredients,
+    data: {"query": ingredients},
     method: 'POST',
-    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
     success: function(data) {
-      console.log("HEEY Was CLicked")
+      let foodArr = data.foods
+
+      for (let i = 0; i < foodArr.length; i++) {
+        console.log(foodArr[i].food_name)
+        console.log(foodArr[i].nf_calories)
+        console.log(foodArr[i].nf_total_fat)
+        console.log(foodArr[i].nf_saturated_fat)
+        console.log(foodArr[i].nf_total_carbohydrate)
+        console.log(foodArr[i].nf_protein)
+        console.log(foodArr[i].nf_sugars)
+      }
+      // console.log(data.foods)
     },
-    error: function() {
-      console.log("Error grabbing calories and nutrient info");
+    error: function(e) {
+      console.log(e);
     }
   });
 }
@@ -186,7 +182,6 @@ function getStarted() {
 function ingredientListener(ingArr, recipeCard) {
    recipeCard.on("click", "button.nutrient-data", function() {
     getNutrients(ingArr)
-
    })
 }
 
@@ -194,11 +189,7 @@ function addBackButton() {
   $(".navbar").append(`<button class="return-form btn btn-primary">Back</button>`)
 }
 
-function clickBackToForm() {
-  $(".return-form").on("click", returnToDietForm())
-}
-
-function returnToDietForm(e) {
+function returnToDietForm() {
   console.log("Hello from DietForm");
   // location.reload();
 }
@@ -206,6 +197,12 @@ function returnToDietForm(e) {
 $(document).ready(function() {
   getStarted();
   submitSearch();
-  clickBackToForm();
 
+  $("button.return-form").click(function() {
+    $(this).data("clicked", true);
+  })
+
+  if ($("button.return-form").data("clicked")) {
+    returnToDietForm()
+  }
 })
