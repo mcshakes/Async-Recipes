@@ -204,7 +204,7 @@ function ingredientListener(ingArr, recipeCard) {
 }
 
 function addBackButton() {
-  $(".navbar").append(`<button class="return-form btn btn-primary">Back</button>`)
+  $(".navbar").append(`<button class="return-form btn btn-primary">Change Your Diet</button>`)
 }
 
 function returnToDietForm() {
