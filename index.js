@@ -14,7 +14,6 @@ function toggleDietaryAlert() {
   let form = $(".dietary-url-builder")
 
   form.addClass('was-validated')
-  // return false;
 }
 
 function buildYummlyURL() {
@@ -43,7 +42,6 @@ function buildEdamamURL() {
     ending += ""
   }
   else {
-    // noDietaryAlert();
     console.log("User did not pick a legitimate dietary option")
   }
   return ending
@@ -77,12 +75,6 @@ function errorHandling() {
 }
 
 function getEdamamData(query, callback) {
-  // get count first, capped at 50, 10 results a per_page
-
-  // loop through, and cap per page based on maximum, maybe 5 per page instead.
-  // navigation structure, each number is division of results Array
-  // 1st loop for page, second loop processes results to put there
-
   // from=0&to=50
   const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=6` + buildEdamamURL();
   $.getJSON(url, query, callback)
@@ -184,7 +176,6 @@ function getStarted() {
     } else {
       renderContent();
       buildEdamamURL();
-      // $(".return-form").bind("click", returnToDietForm())
     }
   });
 }

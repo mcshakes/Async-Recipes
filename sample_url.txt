@@ -11,3 +11,10 @@ https://api.yummly.com/v1/api/recipes?_app_id=12fd875a
 
 
 Turmeric color for Nav: #cabb48
+
+// get count first, capped at 50, 10 results a per_page
+
+ // loop through, and cap per page based on maximum, maybe 5 per page instead.
+ // navigation structure, each number is division of results Array
+ // 1st loop for page, second loop processes results to put there
+ 
