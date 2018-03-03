@@ -17,4 +17,8 @@ Turmeric color for Nav: #cabb48
  // loop through, and cap per page based on maximum, maybe 5 per page instead.
  // navigation structure, each number is division of results Array
  // 1st loop for page, second loop processes results to put there
- 
+
+on first page, hide Previous
+on last page, hide NEXT
+
+when we get data in the first place, we could check the length there to verify.

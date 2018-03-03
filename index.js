@@ -9,11 +9,15 @@ const yummKey = yummly.APP_KEY
 const baseURL = `https://api.edamam.com/search?q=`
 const yummURL = "https://api.yummly.com/v1/api/recipes?"
 
+var recipeData;
+var page = 1;
+
 function toggleDietaryAlert() {
   $(".alert").toggleClass('in out');
   let form = $(".dietary-url-builder")
 
   form.addClass('was-validated')
+  // return false;
 }
 
 function buildYummlyURL() {
@@ -30,6 +34,7 @@ function buildEdamamURL() {
   let ending = ""
   let vegan = $("#vegan");
   let peanutFree = $("#peanut-free");
+  let vegetarian = $("#vegetarian");
   let none = $("#none");
 
   if (vegan.is(":checked")) {
@@ -38,10 +43,14 @@ function buildEdamamURL() {
   else if (peanutFree.is(":checked")) {
     ending += "&health=peanut-free"
   }
+  else if (vegetarian.is(":checked")) {
+    ending += "&health=vegetarian"
+  }
   else if (none.is(":checked")) {
     ending += ""
   }
   else {
+    // noDietaryAlert();
     console.log("User did not pick a legitimate dietary option")
   }
   return ending
@@ -55,7 +64,19 @@ function renderContent() {
   $("button.return-form").on("click" ,function() {
     returnToDietForm()
   });
+}
 
+function showPaginateButton() {
+  $(".next-btn").removeClass("invisible");
+}
+
+function clickNext() {
+  $(".next-btn").on("click", nextPage);
+}
+
+function nextPage() {
+  page += 1
+  paginateRecipes();
 }
 
 function submitSearch() {
@@ -75,58 +96,44 @@ function errorHandling() {
 }
 
 function getEdamamData(query, callback) {
+
   // from=0&to=50
-  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&per_page=6` + buildEdamamURL();
+  const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=50` + buildEdamamURL();
   $.getJSON(url, query, callback)
-  .fail(function() {
-    alert('getJSON request failed! ');
+  .fail(function(e) {
+    // console.log(e);
   });
 }
 
-function getNutrients(ing_arr) {
-  let ingredients = ing_arr.join();
+function paginateRecipes() {
+  let index = page * 5
+  let perPage = recipeData.slice((index - 5), index )
 
-  $.ajax({
-    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
-    headers: {
-      "x-app-id": nutritionix.APP_ID,
-      "x-app-key": nutritionix.APP_KEY
-    },
-    dataType: "json",
-    data: {"query": ingredients},
-    method: 'POST',
-    success: function(data) {
-      let foodArr = data.foods
+  let results = createRecipeCard(perPage)
 
-      for (let i = 0; i < foodArr.length; i++) {
-        console.log(foodArr[i].food_name)
-        console.log(foodArr[i].nf_calories)
-        console.log(foodArr[i].nf_total_fat)
-        console.log(foodArr[i].nf_saturated_fat)
-        console.log(foodArr[i].nf_total_carbohydrate)
-        console.log(foodArr[i].nf_protein)
-        console.log(foodArr[i].nf_sugars)
-      }
-      // console.log(data.foods)
-    },
-    error: function(e) {
-      console.log(e);
-    }
-  });
+  $(".search-results").html(results);
 }
 
 function displayRecipes(data) {
+  // console.log(data)
+  recipeData = data.hits
+  let perPage = recipeData.slice(0,5)
 
-  const results = data.hits.map((hit, index) => {
+  let results = createRecipeCard(perPage)
+
+  $(".search-results").html(results);
+  showPaginateButton();
+  clickNext()
+}
+
+function createRecipeCard(dataArr) {
+  let results = dataArr.map((hit, index) => {
     const recipeCard = $(renderResults(hit,index));
     ingredientListener(hit.recipe.ingredientLines, recipeCard);
 
     return recipeCard;
   });
-
-  const count = data.count
-  $("#number-of-recipes").html(count);
-  $(".search-results").html(results);
+  return results;
 }
 
 function renderResults(result, index) {
@@ -157,12 +164,52 @@ function renderResults(result, index) {
           ${list}
         </ul>
 
-        <button class="nutrient-data btn btn-primary">See Nutrients</button>
-      </div>
+        <button type="button" class="nutrient-data btn btn-primary" data-toggle="modal" data-target="#nutritionModal">See Nutrients</button>
 
     </div>
   `;
 
+}
+
+function getNutrients(ing_arr) {
+  let ingredients = ing_arr.join();
+  $.ajax({
+    url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+    headers: {
+      "x-app-id": nutritionix.APP_ID,
+      "x-app-key": nutritionix.APP_KEY
+    },
+    dataType: "json",
+    data: {"query": ingredients},
+    method: 'POST',
+    success: function(data) {
+      let foodArr = data.foods;
+      let nutrition = "";
+
+      for (let i = 0; i < foodArr.length; i++) {
+        console.log(foodArr[i].food_name)
+        console.log(foodArr[i].nf_calories)
+        console.log(foodArr[i].nf_total_fat)
+        console.log(foodArr[i].nf_saturated_fat)
+        console.log(foodArr[i].nf_total_carbohydrate)
+        console.log(foodArr[i].nf_protein)
+        console.log(foodArr[i].nf_sugars)
+
+        nutrition +=
+        `
+        <strong></strong>
+
+        `
+      }
+
+      // $("modal-body").html(nutrition)
+
+      // console.log(data.foods)
+    },
+    error: function(e) {
+      console.log(e);
+    }
+  });
 }
 
 function getStarted() {
@@ -197,6 +244,4 @@ function returnToDietForm() {
 $(document).ready(function() {
   getStarted();
   submitSearch();
-
-
 })
