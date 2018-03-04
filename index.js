@@ -77,6 +77,7 @@ function clickNext() {
 function nextPage() {
   page += 1
   paginateRecipes();
+  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 }
 
 function submitSearch() {
