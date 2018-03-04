@@ -9,16 +9,18 @@
 .navbar {
   background-color: #cabb48;
 }
-.user-diet-preference {
-  border: 3px dotted black;
-}
 
 .submit-build {
   background-color: cyan;
+  cursor: pointer;
 }
 
 .dietary-url-builder {
-  border: 3px dotted grey
+  border: 3px dotted grey;
+  height: 260px;
+  border-radius: 5px;
+  background: #e8cd9a;
+  box-shadow: 1px 1px 50px #000;
 }
 
 .recipe-card {
@@ -40,7 +42,11 @@
 @media (min-width: 576px) { ... }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { ... }
+@media (min-width: 768px) {
+  .user-diet-preference {
+    max-width: 600px;
+  }
+}
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { ... }
