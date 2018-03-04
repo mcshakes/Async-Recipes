@@ -70,7 +70,7 @@
           <strong>Whoops!</strong> We need to know what you can and cannot eat.
         </div>
 
-      <div class="content-body hide">
+      <div class="content-body text-center py-4 mt-3 hide">
         <main aria-live="polite" role="main">
           <header class="form-header">
             <h1>Find Recipes</h1>
@@ -78,7 +78,7 @@
 
           <form action="#" class="js-search-form" role="search">
             <div>
-              <input name="searchtxt" type="text" class="js-query" aria-label="Search" placeholder="turmeric,radishes, beef">
+              <input name="searchtxt" type="text" class="js-query" aria-label="Search" placeholder="turmeric,radishes, beef" pattern="[a-z]{4,8}">
               <button class="btn btn-default" name="searchbtn" type="submit" value="Search" aria-label="Search">
                 <i class="fas fa-search"></i>
               </button>

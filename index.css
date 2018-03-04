@@ -30,6 +30,14 @@
   margin-bottom: 5px;
 }
 
+.content-body {
+  height: 260px;
+  border-radius: 5px;
+  background: #e8cd9a;
+  box-shadow: 1px 1px 50px #000;
+}
+
+
 .card-body {
   text-align: center;
 }
@@ -44,6 +52,9 @@
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .user-diet-preference {
+    max-width: 600px;
+  }
+  .content-body {
     max-width: 600px;
   }
 }
