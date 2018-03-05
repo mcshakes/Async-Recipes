@@ -17,13 +17,22 @@ body {
 .hide {
   display: none;
 }
-
+/* f91b1b */
 .navbar {
-  background-color: #cabb48;
+  background-color: #ffd622;
+}
+
+.return-form {
+  background-color: #f91b1b;
+  border-color: #ad0d0d;
+  color: white;
+  cursor: pointer;
 }
 
 .submit-build {
-  background-color: cyan;
+  background-color: #f91b1b;
+  border-color: #ad0d0d;
+  color: white;
   cursor: pointer;
 }
 
@@ -35,7 +44,7 @@ body {
   border: 3px dotted grey;
   height: 260px;
   border-radius: 5px;
-  background: #e8cd9a;
+  background: #e7e6d6;
   box-shadow: 1px 1px 50px #000;
 }
 
@@ -49,9 +58,10 @@ body {
 .content-body {
   height: 260px;
   border-radius: 5px;
-  background: #e8cd9a;
+  background: #e7e6d6;
   box-shadow: 1px 1px 50px #000;
   color: #670A0A;
+  margin:auto;
 }
 
 
