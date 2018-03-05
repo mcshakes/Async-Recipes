@@ -1,3 +1,14 @@
+header {
+  max-width: 800px;
+}
+
+body {
+  background: url("./intro-photo.jpeg");
+  background-repeat:no-repeat;
+
+   background-size:cover;
+}
+
 .show {
   display: block;
 }
@@ -35,6 +46,7 @@
   border-radius: 5px;
   background: #e8cd9a;
   box-shadow: 1px 1px 50px #000;
+  color: #670A0A;
 }
 
 

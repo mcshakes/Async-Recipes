@@ -98,11 +98,10 @@ function errorHandling() {
 
 function getEdamamData(query, callback) {
 
-  // from=0&to=50
   const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=50` + buildEdamamURL();
   $.getJSON(url, query, callback)
   .fail(function(e) {
-    // console.log(e);
+    console.log(e)
   });
 }
 
@@ -220,7 +219,6 @@ function getStarted() {
 
     if (checkedBoxes.length === 0) {
       toggleDietaryAlert();
-      // $('#bsalert').on('close.bs.alert', toggleDietaryAlert)
     } else {
       renderContent();
       buildEdamamURL();
