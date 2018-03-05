@@ -1,5 +1,6 @@
 header {
   max-width: 800px;
+  margin: auto;
 }
 
 body {
@@ -24,6 +25,10 @@ body {
 .submit-build {
   background-color: cyan;
   cursor: pointer;
+}
+
+.user-diet-preference {
+  margin: auto;
 }
 
 .dietary-url-builder {
