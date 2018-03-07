@@ -92,6 +92,8 @@ function submitSearch() {
 
     target.val("")
     getEdamamData(query, displayRecipes);
+    $(".form-header").hide()
+    $(".js-search-form").hide()
   });
 }
 
