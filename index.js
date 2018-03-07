@@ -67,7 +67,13 @@ function renderContent() {
 }
 
 function showPaginateButton() {
-  $(".next-btn").removeClass("invisible");
+  if (page < 5) {
+    $(".next-btn").removeClass("invisible");
+  }
+
+  if (page > 1) {
+    $(".previous-btn").removeClass("invisible");
+  }
 }
 
 function clickNext() {
