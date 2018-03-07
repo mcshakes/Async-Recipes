@@ -66,14 +66,13 @@ function renderContent() {
   });
 }
 
-function showPaginateButton() {
-  if (page < 5) {
-    $(".next-btn").removeClass("invisible");
-  }
+function showNextPaginateButton() {
+  $(".next-btn").removeClass("invisible");
 
-  if (page > 1) {
-    $(".previous-btn").removeClass("invisible");
-  }
+}
+
+function showPreviousPaginateButton() {
+  $(".previous-btn").removeClass("invisible");
 }
 
 function clickNext() {
@@ -139,8 +138,12 @@ function displayRecipes(data) {
   let results = createRecipeCard(perPage)
 
   $(".search-results").html(results);
-  showPaginateButton();
-  clickNext()
+
+
+  showNextPaginateButton();
+  showPreviousPaginateButton();
+  clickNext();
+  clickPrevious();
 }
 
 function createRecipeCard(dataArr) {
