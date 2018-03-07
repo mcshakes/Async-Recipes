@@ -195,19 +195,25 @@ function getNutrients(ing_arr) {
       let nutrition = "";
 
       for (let i = 0; i < foodArr.length; i++) {
-        console.log(foodArr[i].food_name)
-        console.log(foodArr[i].nf_calories)
-        console.log(foodArr[i].nf_total_fat)
-        console.log(foodArr[i].nf_saturated_fat)
-        console.log(foodArr[i].nf_total_carbohydrate)
-        console.log(foodArr[i].nf_protein)
-        console.log(foodArr[i].nf_sugars)
+        let name = foodArr[i].food_name
+        let totalCal = foodArr[i].nf_calories
+        let fat = foodArr[i].nf_total_fat
+        let saturatedFat = foodArr[i].nf_saturated_fat
+        let carbs = foodArr[i].nf_total_carbohydrate
+        let protein = foodArr[i].nf_protein
+        let sugar = foodArr[i].nf_sugars
 
         nutrition +=
         `
-        <strong></strong>
-
+        <strong>${name}</strong>
+        <p>Calories: ${totalCal}</p>
+        <p>Fat: ${fat} grams</p>
+        <p>Saturated Fat: ${saturatedFat} grams</p>
+        <p>Carbohydrates: ${carbs} grams</p>
+        <p>Protein: ${protein} grams</p>
+        <p>Sugar: ${sugar} grams</p>
         `
+        return nutrition;
       }
 
       $("modal-body").html(nutrition)
