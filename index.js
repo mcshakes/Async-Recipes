@@ -213,10 +213,9 @@ function getNutrients(ing_arr) {
         <p>Protein: ${protein} grams</p>
         <p>Sugar: ${sugar} grams</p>
         `
-        return nutrition;
       }
 
-      $("modal-body").html(nutrition)
+      $(".modal-body").html(nutrition)
 
       // console.log(data.foods)
     },
