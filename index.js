@@ -236,7 +236,7 @@ function getStarted() {
 
 function ingredientListener(ingArr, recipeCard) {
    recipeCard.on("click", "button.nutrient-data", function() {
-    getNutrients(ingArr)
+     getNutrients(ingArr)
    })
 }
 
