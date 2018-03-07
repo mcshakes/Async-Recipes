@@ -74,8 +74,18 @@ function clickNext() {
   $(".next-btn").on("click", nextPage);
 }
 
+function clickPrevious() {
+  $(".previous-btn").on("click", previousPage);
+}
+
 function nextPage() {
   page += 1
+  paginateRecipes();
+  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+}
+
+function previousPage() {
+  page -= 1
   paginateRecipes();
   window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 }
@@ -99,6 +109,7 @@ function errorHandling() {
 function getEdamamData(query, callback) {
 
   const url = `${baseURL}${query}&app_id=${appId}&app_key=${appKey}&from=0&to=50` + buildEdamamURL();
+
   $.getJSON(url, query, callback)
   .fail(function(e) {
     console.log(e)
