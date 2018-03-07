@@ -21,11 +21,16 @@ body {
   border-radius: 5px;
 }
 
+/* .navbar-brand {
+  margin: auto;
+} */
+
 .return-form {
   background-color: #f91b1b;
   border-color: #ad0d0d;
   color: white;
   cursor: pointer;
+  /* margin: auto; */
 }
 
 
@@ -54,6 +59,7 @@ body {
   padding: 3px;
   margin-top: 10px;
   margin-bottom: 5px;
+  background: #e7e6d6;
 }
 
 .content-body {
@@ -75,6 +81,10 @@ body {
   padding-left: 0px;
 }
 
+.nutrient-data button {
+  background-color: #f91b1b;
+}
+
 .navigation-buttons {
   margin-bottom: 15px;
   margin-top: 15px;
@@ -86,6 +96,11 @@ body {
   border-radius: 10px;
   width:25%;
 }
+@media (min-width: 425px) {
+  .js-query {
+    width: 275px;
+  }
+}
 
 @media (min-width: 576px) { ... }
 
@@ -95,7 +110,11 @@ body {
     max-width: 600px;
   }
   .content-body {
-    max-width: 600px;
+    max-width: 660px;
+  }
+
+  .js-query {
+    width: 600px;
   }
 }
 
