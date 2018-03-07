@@ -3,11 +3,9 @@ const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
 const nutr_id = nutritionix.APP_ID
 const nutr_key = nutritionix.APP_KEY
-const yummID = yummly.APP_ID
-const yummKey = yummly.APP_KEY
+
 
 const baseURL = `https://api.edamam.com/search?q=`
-const yummURL = "https://api.yummly.com/v1/api/recipes?"
 
 var recipeData;
 var page = 1;
@@ -18,16 +16,6 @@ function toggleDietaryAlert() {
 
   form.addClass('was-validated')
   // return false;
-}
-
-function buildYummlyURL() {
-  let ending = ""
-  let pesc = $("#pescatarian");
-
-  if (pesc.is(":checked")) {
-    ending += "&allowedDiet[]=Pescetarian"
-  }
-  return ending
 }
 
 function buildEdamamURL() {
@@ -131,7 +119,7 @@ function paginateRecipes() {
 }
 
 function displayRecipes(data) {
-  // console.log(data)
+
   recipeData = data.hits
   let perPage = recipeData.slice(0,5)
 
@@ -222,7 +210,7 @@ function getNutrients(ing_arr) {
         `
       }
 
-      // $("modal-body").html(nutrition)
+      $("modal-body").html(nutrition)
 
       // console.log(data.foods)
     },
