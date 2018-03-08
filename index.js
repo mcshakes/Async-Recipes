@@ -47,11 +47,14 @@ function buildEdamamURL() {
 function renderContent() {
   $(".user-diet-preference").hide();
   $(".content-body").removeClass("hide");
-  addBackButton();
+  addBackToFormButton();
+  addBackToSearchButton();
 
   $("button.return-form").on("click" ,function() {
     returnToDietForm()
   });
+
+
 }
 
 function showNextPaginateButton() {
@@ -92,6 +95,8 @@ function submitSearch() {
 
     target.val("")
     getEdamamData(query, displayRecipes);
+
+    // Hides irrelevant parts of the form
     $(".form-header").hide()
     $(".js-search-form").hide()
   });
@@ -120,9 +125,22 @@ function paginateRecipes() {
   $(".search-results").html(results);
 }
 
+function emptyAllRecipeHits(data) {
+  // NOTE: Need to empty this out
+  // let recipes = data.hits
+  // recipes = null;
+  // return recipes;
+}
+
 function displayRecipes(data) {
 
   recipeData = data.hits
+
+  $("button.return-search").on("click", function() {
+    emptyAllRecipeHits(data)
+    // then what
+  })
+
   let perPage = recipeData.slice(0,5)
 
   let results = createRecipeCard(perPage)
@@ -247,8 +265,12 @@ function ingredientListener(ingArr, recipeCard) {
    })
 }
 
-function addBackButton() {
+function addBackToFormButton() {
   $(".navbar").append(`<button class="return-form btn">Try Different Diet?</button>`)
+}
+
+function addBackToSearchButton() {
+  $(".navbar").append(`<button class="return-search btn">Different Foods Combo?</button>`)
 }
 
 function returnToDietForm() {
