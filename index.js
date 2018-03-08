@@ -28,32 +28,30 @@ function buildEdamamURL() {
   if (vegan.is(":checked")) {
     ending += "&health=vegan"
   }
+
   else if (peanutFree.is(":checked")) {
     ending += "&health=peanut-free"
   }
+
   else if (vegetarian.is(":checked")) {
     ending += "&health=vegetarian"
   }
+
   else if (none.is(":checked")) {
     ending += ""
   }
-  else {
-    // noDietaryAlert();
-    console.log("User did not pick a legitimate dietary option")
-  }
   return ending
+
 }
 
 function renderContent() {
   $(".user-diet-preference").hide();
   $(".content-body").removeClass("hide");
   addBackToFormButton();
-  addBackToSearchButton();
 
   $("button.return-form").on("click" ,function() {
     returnToDietForm()
   });
-
 
 }
 
@@ -125,21 +123,10 @@ function paginateRecipes() {
   $(".search-results").html(results);
 }
 
-function emptyAllRecipeHits(data) {
-  // NOTE: Need to empty this out
-  // let recipes = data.hits
-  // recipes = null;
-  // return recipes;
-}
-
 function displayRecipes(data) {
 
   recipeData = data.hits
 
-  $("button.return-search").on("click", function() {
-    emptyAllRecipeHits(data)
-    // then what
-  })
 
   let perPage = recipeData.slice(0,5)
 
@@ -248,7 +235,8 @@ function getNutrients(ing_arr) {
 function getStarted() {
   $(".submit-build").on("click", function(e) {
     e.preventDefault()
-    checkedBoxes = $("input[type='checkbox']:checked")
+
+    let checkedBoxes = $("input[type='checkbox']:checked")
 
     if (checkedBoxes.length === 0) {
       toggleDietaryAlert();
@@ -267,10 +255,6 @@ function ingredientListener(ingArr, recipeCard) {
 
 function addBackToFormButton() {
   $(".navbar").append(`<button class="return-form btn">Try Different Diet?</button>`)
-}
-
-function addBackToSearchButton() {
-  $(".navbar").append(`<button class="return-search btn">Different Foods Combo?</button>`)
 }
 
 function returnToDietForm() {
