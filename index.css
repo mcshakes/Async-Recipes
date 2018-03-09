@@ -98,6 +98,16 @@ body {
   width:25%;
 } */
 
+@media (min-width: 320px) {
+  nav .navbar-brand {
+    margin: auto;
+  }
+
+  .return-form {
+    margin: auto;
+  }
+}
+
 @media (min-width: 425px) {
   .js-query {
     width: 275px;
