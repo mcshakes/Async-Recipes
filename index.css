@@ -97,6 +97,7 @@ body {
   border-radius: 10px;
   width:25%;
 } */
+
 @media (min-width: 425px) {
   .js-query {
     width: 275px;
