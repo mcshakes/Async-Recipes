@@ -13,7 +13,7 @@ body {
 .hide {
   display: none;
 }
-/* f91b1b */
+
 .navbar {
   background-color: #ffd622;
   max-width: 800px;
@@ -59,12 +59,12 @@ body {
   padding: 3px;
   margin-top: 10px;
   margin-bottom: 5px;
-  /* background: #e7e6d6; */
+  background: #e7e6d6;
 }
 
 .content-body {
-  /* height: 260px; */
-  overflow: scroll;
+  height: 260px;
+  /* overflow: scroll; */
   border-radius: 5px;
   background: #e7e6d6;
   box-shadow: 1px 1px 50px #000;
