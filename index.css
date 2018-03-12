@@ -32,7 +32,10 @@ body {
   /* margin: auto; */
 }
 
-
+.ingredients-in-hand {
+  font-size: 20px;
+  padding-top: 3px;
+}
 .submit-build {
   background-color: #f91b1b;
   border-color: #ad0d0d;

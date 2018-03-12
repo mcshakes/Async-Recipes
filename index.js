@@ -126,6 +126,7 @@ function paginateRecipes() {
 function displayRecipes(data) {
 
   recipeData = data.hits
+  let ingredients = data.q
 
 
   let perPage = recipeData.slice(0,5)
@@ -134,11 +135,16 @@ function displayRecipes(data) {
 
   $(".search-results").html(results);
 
-
+  ingredientsInHand(ingredients)
   showNextPaginateButton();
   showPreviousPaginateButton();
   clickNext();
   clickPrevious();
+}
+
+function ingredientsInHand(ing) {
+  $(".reminder").html(ing)
+  $(".ingredients-in-hand").show();
 }
 
 function createRecipeCard(dataArr) {
@@ -224,7 +230,6 @@ function getNutrients(ing_arr) {
 
       $(".modal-body").html(nutrition)
 
-      // console.log(data.foods)
     },
     error: function(e) {
       console.log(e);
