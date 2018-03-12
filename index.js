@@ -179,7 +179,7 @@ function renderResults(result, index) {
           ${list}
         </ul>
 
-        <button type="button" class="nutrient-data btn btn-primary" data-toggle="modal" data-target="#nutritionModal">See Nutrients</button>
+        <button type="button" class="nutrient-data btn btn-primary" data-toggle="modal" data-target="#nutritionModal">Nutritional Info</button>
 
     </div>
   `;
