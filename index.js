@@ -127,19 +127,29 @@ function displayRecipes(data) {
 
   recipeData = data.hits
   let ingredients = data.q
-
+  let count = data.count;
 
   let perPage = recipeData.slice(0,5)
 
   let results = createRecipeCard(perPage)
 
-  $(".search-results").html(results);
+  if (count === 0) {
+    noRecipesToShow();
+  } else {
+    $(".search-results").html(results);
 
-  ingredientsInHand(ingredients)
-  showNextPaginateButton();
-  showPreviousPaginateButton();
-  clickNext();
-  clickPrevious();
+    ingredientsInHand(ingredients)
+    showNextPaginateButton();
+    showPreviousPaginateButton();
+    clickNext();
+    clickPrevious();
+  }
+
+
+}
+
+function noRecipesToShow() {
+  $(".content-body").append("Oh no! We got nothing for you. Make something up or try a different combo")
 }
 
 function ingredientsInHand(ing) {
