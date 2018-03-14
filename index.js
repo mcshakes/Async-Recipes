@@ -40,7 +40,6 @@ function buildEdamamURL() {
     ending += ""
   }
   return ending
-
 }
 
 function renderContent() {
@@ -56,7 +55,6 @@ function renderContent() {
 
 function showNextPaginateButton() {
   $(".next-btn").removeClass("invisible");
-
 }
 
 function showPreviousPaginateButton() {
@@ -133,14 +131,16 @@ function displayRecipes(data) {
   } else {
     $(".search-results").html(results);
 
-    ingredientsInHand(ingredients)
-    showNextPaginateButton();
-    showPreviousPaginateButton();
-    clickNext();
-    clickPrevious();
+    ingredientsInHand(ingredients);
+    pagination();
   }
+}
 
-
+function pagination() {
+  showNextPaginateButton();
+  showPreviousPaginateButton();
+  clickNext();
+  clickPrevious();
 }
 
 function noRecipesToShow() {
@@ -154,7 +154,7 @@ function ingredientsInHand(ing) {
 
 function createRecipeCard(dataArr) {
   let results = dataArr.map((hit, index) => {
-    const recipeCard = $(renderResults(hit,index));
+    const recipeCard = $(buildRecipe(hit,index));
     ingredientListener(hit.recipe.ingredientLines, recipeCard);
 
     return recipeCard;
@@ -162,7 +162,7 @@ function createRecipeCard(dataArr) {
   return results;
 }
 
-function renderResults(result, index) {
+function buildRecipe(result, index) {
 
   let ingArr = result.recipe.ingredientLines
   let list = ""
@@ -197,8 +197,9 @@ function renderResults(result, index) {
 
 }
 
-function getNutrients(ing_arr) {
+function getNutritionInfo(ing_arr) {
   let ingredients = ing_arr.join();
+  
   $.ajax({
     url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
     headers: {
@@ -279,7 +280,7 @@ function getStarted() {
 
 function ingredientListener(ingArr, recipeCard) {
    recipeCard.on("click", "button.nutrient-data", function() {
-     getNutrients(ingArr)
+     getNutritionInfo(ingArr)
    })
 }
 
