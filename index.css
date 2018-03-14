@@ -78,6 +78,10 @@ body {
   margin-bottom: 0px;
 }
 
+.modal-footer button {
+  margin: auto;
+}
+
 .card-body {
   text-align: center;
 }
