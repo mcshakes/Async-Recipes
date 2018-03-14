@@ -11,10 +11,9 @@ var recipeData;
 var page = 1;
 
 function toggleDietaryAlert() {
-  $(".alert").toggleClass('in out');
-  let form = $(".dietary-url-builder")
-
-  form.addClass('was-validated')
+  $("#warning").fadeTo(3000,500).slideUp(500, function() {
+    $("#warning").slideUp(500);
+  })
 }
 
 function buildEdamamURL() {
@@ -199,7 +198,7 @@ function buildRecipe(result, index) {
 
 function getNutritionInfo(ing_arr) {
   let ingredients = ing_arr.join();
-  
+
   $.ajax({
     url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
     headers: {
