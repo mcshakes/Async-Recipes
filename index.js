@@ -15,7 +15,6 @@ function toggleDietaryAlert() {
   let form = $(".dietary-url-builder")
 
   form.addClass('was-validated')
-  // return false;
 }
 
 function buildEdamamURL() {
@@ -98,10 +97,6 @@ function submitSearch() {
     $(".form-header").hide()
     $(".js-search-form").hide()
   });
-}
-
-function errorHandling() {
-  // put in .fail
 }
 
 function getEdamamData(query, callback) {
