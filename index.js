@@ -227,14 +227,34 @@ function getNutrients(ing_arr) {
         let sugar = foodArr[i].nf_sugars
 
         nutrition +=
-        `
-        <strong>${name}</strong>
-        <p>Calories: ${totalCal}</p>
-        <p>Fat: ${fat} grams</p>
-        <p>Saturated Fat: ${saturatedFat} grams</p>
-        <p>Carbohydrates: ${carbs} grams</p>
-        <p>Protein: ${protein} grams</p>
-        <p>Sugar: ${sugar} grams</p>
+        `<table class="table table-hover">
+          <thead>
+            <tr>
+              <th><strong>${name}</strong></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Calories:</td> <td>${totalCal}</td>
+            </tr>
+            <tr>
+              <td>Fat:</td> <td>${fat} grams</td>
+            </tr>
+            <tr>
+              <td>Saturated Fat:</td> <td>${saturatedFat} grams</td>
+            </tr>
+            <tr>
+              <td>Carbohydrates:</td> <td>${carbs} grams</td>
+            </tr>
+            <tr>
+              <td>Protein:</td> <td>${protein} grams</td>
+            </tr>
+            <tr>
+              <td>Sugar:</td> <td>${sugar} grams</td>
+            </tr>
+          </tbody>
+        </table>
         `
       }
 
