@@ -176,7 +176,7 @@ function buildRecipe(result, index) {
         <figure>
           <a target="_blank" href="${result.recipe.url}">
             <img src="${result.recipe.image}" class="img-fluid rounded mx-auto d-block" alt="">
-            <div class="mask rgba-white-slight"></div>
+            <span>Click image to go to full recipe</span>
           </a>
         </figure>
 

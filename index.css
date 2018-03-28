@@ -64,6 +64,18 @@ body {
   background: #e7e6d6;
 }
 
+span {
+  border: 1px solid #ccc;
+  display: none;
+  font-size: 10px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+figure:hover span {
+  display: block;
+}
+
 .content-body {
   height: 260px;
   /* overflow: scroll; */
@@ -72,6 +84,7 @@ body {
   box-shadow: 1px 1px 50px #000;
   color: #670A0A;
   margin: auto;
+  margin-top: 20px;
 }
 
 .modal-body p {
