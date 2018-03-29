@@ -74,6 +74,10 @@ img {
   transition: .5s ease;
 }
 
+.hold-image {
+  position: relative;
+}
+
 .middle {
   transition: .5s ease;
   opacity: 0;
