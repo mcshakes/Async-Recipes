@@ -1,23 +1,9 @@
-const edamam = {
-  APP_ID: "9a26f267",
-  APP_KEY: "6e1530be429eca937bf481c886270cba"
-}
-
-const nutritionix = {
-  APP_ID: "78806803",
-  APP_KEY: "aecf2ed7d06fa649eba66d3489e5691e"
-}
-
-const yummly = {
-  APP_ID: "12fd875a",
-  APP_KEY: "ba86c65e5fe1ef9412734dc7ae9d4bc3"
-}
 
 
-const appKey = edamam.APP_KEY
-const appId = edamam.APP_ID
-const nutr_id = nutritionix.APP_ID
-const nutr_key = nutritionix.APP_KEY
+const appKey = "6e1530be429eca937bf481c886270cba"
+const appId = "9a26f267"
+const nutr_id = "78806803"
+const nutr_key = "aecf2ed7d06fa649eba66d3489e5691e"
 
 
 const baseURL = `https://api.edamam.com/search?q=`
