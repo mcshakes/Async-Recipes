@@ -1,3 +1,18 @@
+const edamam = {
+  APP_ID: "9a26f267",
+  APP_KEY: "6e1530be429eca937bf481c886270cba"
+}
+
+const nutritionix = {
+  APP_ID: "78806803",
+  APP_KEY: "aecf2ed7d06fa649eba66d3489e5691e"
+}
+
+const yummly = {
+  APP_ID: "12fd875a",
+  APP_KEY: "ba86c65e5fe1ef9412734dc7ae9d4bc3"
+}
+
 
 const appKey = edamam.APP_KEY
 const appId = edamam.APP_ID
