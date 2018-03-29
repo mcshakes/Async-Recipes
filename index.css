@@ -64,16 +64,41 @@ body {
   background: #e7e6d6;
 }
 
-span {
-  border: 1px solid #ccc;
-  display: none;
-  font-size: 10px;
-  margin-top: 10px;
-  padding: 5px;
+img {
+  opacity: 1;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: block;
+  height: auto;
+  transition: .5s ease;
 }
 
-figure:hover span {
-  display: block;
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hold-image:hover img {
+  opacity: 0.3;
+}
+
+.hold-image:hover .middle {
+  opacity: 1;
+}
+
+.message {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 8px;
 }
 
 .content-body {

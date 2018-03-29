@@ -173,12 +173,14 @@ function buildRecipe(result, index) {
   return `
     <div class="recipe-card rounded">
 
-        <figure>
+        <div class="hold-image">
           <a target="_blank" href="${result.recipe.url}">
             <img src="${result.recipe.image}" class="img-fluid rounded mx-auto d-block" alt="">
-            <span>Click image to go to full recipe</span>
+            <div class="middle">
+              <div class="message">Click image for full recipe</div>
+            </div>
           </a>
-        </figure>
+        </div>
 
 
       <div class="card-body">
