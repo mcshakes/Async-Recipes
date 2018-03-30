@@ -112,7 +112,7 @@ function paginateRecipes() {
 
   let results = createRecipeCard(perPage)
 
-  // $(".search-results").html(results);
+  $(".search-results").html(results);
   // NOTE: Page is being incremented here
 
 }
