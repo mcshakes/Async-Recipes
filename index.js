@@ -71,13 +71,13 @@ function clickPrevious() {
 function nextPage() {
   page += 1
   paginateRecipes();
-  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  window.scroll({ top: -100, left: 0, behavior: 'smooth' });
 }
 
 function previousPage() {
   page -= 1
   paginateRecipes();
-  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  window.scroll({ top: -100, left: 0, behavior: 'smooth' });
 }
 
 function submitSearch() {
