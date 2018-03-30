@@ -121,7 +121,7 @@ function displayRecipes(data) {
   console.log("Page here: " + page)
   recipeData = data.hits
   let ingredients = data.q
-  let count = data.count;
+  let count = data.hits.length;
 
   let perPage = recipeData.slice(0,5)
 
