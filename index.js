@@ -112,12 +112,13 @@ function paginateRecipes() {
 
   let results = createRecipeCard(perPage)
 
-  $(".search-results").html(results);
+  // $(".search-results").html(results);
   // NOTE: Page is being incremented here
+
 }
 
 function displayRecipes(data) {
-
+  console.log("Page here: " + page)
   recipeData = data.hits
   let ingredients = data.q
   let count = data.count;
@@ -137,6 +138,7 @@ function displayRecipes(data) {
 }
 
 function pagination() {
+
   showPreviousPaginateButton();
   showNextPaginateButton();
 
