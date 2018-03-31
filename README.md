@@ -7,3 +7,6 @@ The novice in the kitchen knows just a few things: what they want to eat; what t
 1. Open their fridge
 2. Search according to what they have already.
 
+## Live Demo
+
+https://mcshakes.github.io/In-My-Fridge/
