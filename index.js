@@ -9,6 +9,7 @@ const baseURL = `https://api.edamam.com/search?q=`
 
 var recipeData;
 var page = 1;
+var finalPage;
 
 function toggleDietaryAlert() {
   $("#warning").fadeTo(3000,500).slideUp(500, function() {
@@ -69,15 +70,31 @@ function clickPrevious() {
 }
 
 function nextPage() {
-  page += 1
-  paginateRecipes();
-  window.scroll({ top: -100, left: 0, behavior: 'smooth' });
+  if (page < finalPage) {
+    page += 1
+    paginateRecipes();
+    window.scroll({ top: -100, left: 0, behavior: 'smooth' });
+  }
+  if (page == finalPage -1) {
+    $(".next-btn").addClass("invisible");
+  }
+  if (page > 1) {
+    showPreviousPaginateButton()
+  }
 }
 
 function previousPage() {
-  page -= 1
-  paginateRecipes();
-  window.scroll({ top: -100, left: 0, behavior: 'smooth' });
+  if (page > 1) {
+    page -= 1
+    paginateRecipes();
+    window.scroll({ top: -100, left: 0, behavior: 'smooth' });
+  }
+  if (page == 1) {
+    $(".next-btn").addClass("invisible");
+  }
+  if (page < finalPage) {
+    showNextPaginateButton();
+  }
 }
 
 function submitSearch() {
@@ -123,6 +140,7 @@ function displayRecipes(data) {
   let ingredients = data.q
   let count = data.hits.length;
 
+  finalPage = (count/5)
   let perPage = recipeData.slice(0,5)
 
   let results = createRecipeCard(perPage)
@@ -139,7 +157,7 @@ function displayRecipes(data) {
 
 function pagination() {
 
-  showPreviousPaginateButton();
+  // showPreviousPaginateButton();
   showNextPaginateButton();
 
   clickNext();
