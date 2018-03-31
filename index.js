@@ -229,8 +229,8 @@ function getNutritionInfo(ing_arr) {
   $.ajax({
     url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
     headers: {
-      "x-app-id": nutritionix.APP_ID,
-      "x-app-key": nutritionix.APP_KEY
+      "x-app-id": nutr_id,
+      "x-app-key": nutr_key
     },
     dataType: "json",
     data: {"query": ingredients},
