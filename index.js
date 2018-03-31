@@ -78,7 +78,7 @@ function nextPage() {
   }
   if (page == finalPage -1) {
     $(".next-btn").addClass("invisible");
-    // $(".previous-btn").addClass("alone");
+    $(".previous-btn").addClass("alone");
   }
   if (page > 1) {
     showPreviousPaginateButton()
@@ -138,7 +138,6 @@ function paginateRecipes() {
 }
 
 function displayRecipes(data) {
-  console.log("Page here: " + page)
   recipeData = data.hits
   let ingredients = data.q
   let count = data.hits.length;
