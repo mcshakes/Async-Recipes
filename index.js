@@ -1,8 +1,9 @@
 
-const appKey = edamam.APP_KEY
-const appId = edamam.APP_ID
-const nutr_id = nutritionix.APP_ID
-const nutr_key = nutritionix.APP_KEY
+
+const appKey = "6e1530be429eca937bf481c886270cba"
+const appId = "9a26f267"
+const nutr_id = "78806803"
+const nutr_key = "aecf2ed7d06fa649eba66d3489e5691e"
 
 
 const baseURL = `https://api.edamam.com/search?q=`
