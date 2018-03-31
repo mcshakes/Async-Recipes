@@ -74,9 +74,11 @@ function nextPage() {
     page += 1
     paginateRecipes();
     window.scroll({ top: -100, left: 0, behavior: 'smooth' });
+    $(".next-btn").removeClass("alone");
   }
   if (page == finalPage -1) {
     $(".next-btn").addClass("invisible");
+    // $(".previous-btn").addClass("alone");
   }
   if (page > 1) {
     showPreviousPaginateButton()
@@ -90,7 +92,8 @@ function previousPage() {
     window.scroll({ top: -100, left: 0, behavior: 'smooth' });
   }
   if (page == 1) {
-    $(".next-btn").addClass("invisible");
+    $(".previous-btn").addClass("invisible");
+    $(".next-btn").addClass("alone");
   }
   if (page < finalPage) {
     showNextPaginateButton();

@@ -144,11 +144,20 @@ img {
 }
 
 .next-btn {
-  /* left: 50%;
-  transform: translateX(-50%);
-  position: absolute; */
   display: inline-block;
 }
+
+.next-btn.alone {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
+
+/* .previous-btn.alone {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+} */
 
 @media (min-width: 320px) {
   nav .navbar-brand {
